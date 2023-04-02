@@ -1,0 +1,16 @@
+package ug.co.absa.paybill.service.mapper;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class PaybillMapperTest {
+
+    private PaybillMapper paybillMapper;
+
+    @BeforeEach
+    public void setUp() {
+        paybillMapper = new PaybillMapperImpl();
+    }
+}

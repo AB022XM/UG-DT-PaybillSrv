@@ -1,0 +1,151 @@
+<div>
+  <h2 id="page-heading" data-cy="BillerCatergoryHeading">
+    <span jhiTranslate="paybillApiApp.billerCatergory.home.title">Biller Catergories</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="paybillApiApp.billerCatergory.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-biller-catergory"
+        [routerLink]="['/biller-catergory/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="paybillApiApp.billerCatergory.home.createLabel"> Create a new Biller Catergory </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="billerCatergories?.length === 0">
+    <span jhiTranslate="paybillApiApp.billerCatergory.home.notFound">No Biller Catergories found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="billerCatergories && billerCatergories.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="recordUniqueIdentifier">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.billerCatergory.recordUniqueIdentifier">Record Unique Identifier</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="categoryId">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.billerCatergory.categoryId">Category Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="categoryCode">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.billerCatergory.categoryCode">Category Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="categoryName">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.billerCatergory.categoryName">Category Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="categoryDescription">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.billerCatergory.categoryDescription">Category Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.billerCatergory.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.billerCatergory.freeField1">Free Field 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.billerCatergory.freeField2">Free Field 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.billerCatergory.freeField3">Free Field 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.billerCatergory.isDeleted">Is Deleted</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let billerCatergory of billerCatergories; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/biller-catergory', billerCatergory.id, 'view']">{{ billerCatergory.id }}</a>
+          </td>
+          <td>{{ billerCatergory.recordUniqueIdentifier }}</td>
+          <td>{{ billerCatergory.categoryId }}</td>
+          <td>{{ billerCatergory.categoryCode }}</td>
+          <td>{{ billerCatergory.categoryName }}</td>
+          <td>{{ billerCatergory.categoryDescription }}</td>
+          <td jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + billerCatergory.status }}">{{ billerCatergory.status }}</td>
+          <td>{{ billerCatergory.freeField1 }}</td>
+          <td>{{ billerCatergory.freeField2 }}</td>
+          <td>{{ billerCatergory.freeField3 }}</td>
+          <td>{{ billerCatergory.isDeleted }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/biller-catergory', billerCatergory.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/biller-catergory', billerCatergory.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(billerCatergory)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

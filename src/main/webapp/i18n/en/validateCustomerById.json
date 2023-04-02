@@ -1,0 +1,25 @@
+{
+  "paybillApiApp": {
+    "validateCustomerById": {
+      "home": {
+        "title": "Validate Customer By Ids",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Validate Customer By Id",
+        "createOrEditLabel": "Create or edit a Validate Customer By Id",
+        "notFound": "No Validate Customer By Ids found"
+      },
+      "created": "A new Validate Customer By Id is created with identifier {{ param }}",
+      "updated": "A Validate Customer By Id is updated with identifier {{ param }}",
+      "deleted": "A Validate Customer By Id is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Validate Customer By Id {{ id }}?"
+      },
+      "detail": {
+        "title": "Validate Customer By Id"
+      },
+      "id": "ID",
+      "customnerId": "Customner Id",
+      "billCode": "Bill Code"
+    }
+  }
+}

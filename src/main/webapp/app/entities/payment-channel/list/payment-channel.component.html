@@ -1,0 +1,144 @@
+<div>
+  <h2 id="page-heading" data-cy="PaymentChannelHeading">
+    <span jhiTranslate="paybillApiApp.paymentChannel.home.title">Payment Channels</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="paybillApiApp.paymentChannel.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-payment-channel"
+        [routerLink]="['/payment-channel/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="paybillApiApp.paymentChannel.home.createLabel"> Create a new Payment Channel </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="paymentChannels?.length === 0">
+    <span jhiTranslate="paybillApiApp.paymentChannel.home.notFound">No Payment Channels found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="paymentChannels && paymentChannels.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="recordUniqueIdentifier">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paymentChannel.recordUniqueIdentifier">Record Unique Identifier</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="channelId">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paymentChannel.channelId">Channel Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="channelCode">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paymentChannel.channelCode">Channel Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="channelName">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paymentChannel.channelName">Channel Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paymentChannel.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paymentChannel.freeField1">Free Field 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paymentChannel.freeField2">Free Field 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paymentChannel.freeField3">Free Field 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paymentChannel.isDeleted">Is Deleted</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paymentChannel of paymentChannels; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/payment-channel', paymentChannel.id, 'view']">{{ paymentChannel.id }}</a>
+          </td>
+          <td>{{ paymentChannel.recordUniqueIdentifier }}</td>
+          <td>{{ paymentChannel.channelId }}</td>
+          <td>{{ paymentChannel.channelCode }}</td>
+          <td jhiTranslate="{{ 'paybillApiApp.PaymentChannel.' + paymentChannel.channelName }}">{{ paymentChannel.channelName }}</td>
+          <td jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + paymentChannel.status }}">{{ paymentChannel.status }}</td>
+          <td>{{ paymentChannel.freeField1 }}</td>
+          <td>{{ paymentChannel.freeField2 }}</td>
+          <td>{{ paymentChannel.freeField3 }}</td>
+          <td jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + paymentChannel.isDeleted }}">{{ paymentChannel.isDeleted }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/payment-channel', paymentChannel.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/payment-channel', paymentChannel.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(paymentChannel)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

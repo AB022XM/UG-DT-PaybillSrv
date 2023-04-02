@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="associatedFees">
+      <h2 data-cy="associatedFeesDetailsHeading"><span jhiTranslate="paybillApiApp.associatedFees.detail.title">Associated Fees</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ associatedFees.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.recordUniqueIdentifier">Record Unique Identifier</span></dt>
+        <dd>
+          <span>{{ associatedFees.recordUniqueIdentifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.feeId">Fee Id</span></dt>
+        <dd>
+          <span>{{ associatedFees.feeId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.feeCode">Fee Code</span></dt>
+        <dd>
+          <span>{{ associatedFees.feeCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.feeDescription">Fee Description</span></dt>
+        <dd>
+          <span>{{ associatedFees.feeDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.status">Status</span></dt>
+        <dd>
+          <span>{{ associatedFees.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ associatedFees.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ associatedFees.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ associatedFees.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ associatedFees.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ associatedFees.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="paybillApiApp.associatedFees.isDeleted"
+            [ngbTooltip]="'paybillApiApp.associatedFees.help.isDeleted' | translate"
+            >Is Deleted</span
+          >
+        </dt>
+        <dd>
+          <span>{{ associatedFees.isDeleted | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.associatedFees.payment">Payment</span></dt>
+        <dd>
+          <div *ngIf="associatedFees.payment">
+            <a [routerLink]="['/payment', associatedFees.payment.id, 'view']">{{ associatedFees.payment.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/associated-fees', associatedFees.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

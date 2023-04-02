@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="payment">
+      <h2 data-cy="paymentDetailsHeading"><span jhiTranslate="paybillApiApp.payment.detail.title">Payment</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ payment.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.recordUniqueIdentifier">Record Unique Identifier</span></dt>
+        <dd>
+          <span>{{ payment.recordUniqueIdentifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.paymentId">Payment Id</span></dt>
+        <dd>
+          <span>{{ payment.paymentId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.paymentCode">Payment Code</span></dt>
+        <dd>
+          <span>{{ payment.paymentCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.customerId">Customer Id</span></dt>
+        <dd>
+          <span>{{ payment.customerId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.feeAmount">Fee Amount</span></dt>
+        <dd>
+          <span>{{ payment.feeAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.isAmountFixed">Is Amount Fixed</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + payment.isAmountFixed }}">{{ payment.isAmountFixed }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.feeDescription">Fee Description</span></dt>
+        <dd>
+          <span>{{ payment.feeDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.fixedAmount">Fixed Amount</span></dt>
+        <dd>
+          <span>{{ payment.fixedAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.paymentName">Payment Name</span></dt>
+        <dd>
+          <span>{{ payment.paymentName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.outstandingAmount">Outstanding Amount</span></dt>
+        <dd>
+          <span>{{ payment.outstandingAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.paymentChannel">Payment Channel</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'paybillApiApp.PaymentChannel.' + payment.paymentChannel }}">{{ payment.paymentChannel }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ payment.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ payment.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ payment.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.payment.biller">Biller</span></dt>
+        <dd>
+          <div *ngIf="payment.biller">
+            <a [routerLink]="['/biller', payment.biller.id, 'view']">{{ payment.biller.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/payment', payment.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+{
+  "applications": ["PaybillAPI"],
+  "changelogDate": "20230402192007",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "payment_channel",
+  "fields": [
+    {
+      "fieldName": "recordUniqueIdentifier",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "channelId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "channelCode",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "channelName",
+      "fieldType": "PaymentChannel",
+      "fieldTypeJavadoc": "This enum shows all available payment channels\\n@author Banada Ismael ABSA DT team",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "OVERTHECOUNTER (COUNTER),ABSAINTERNETBANKING (INTERNETBANKING),POINTOFSALE (POS),MOBILEAPP (APP),CHATBOT (ABBY),USSD (USSD)"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "RecordStatus",
+      "fieldValues": "ACTIVE (True),INACTIVE (False)"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String",
+      "javadoc": "This is an additional field\\ncreated in case there is need to\\nadd a field without the need to alter database configs"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String",
+      "javadoc": "This is an additional field\\ncreated in case there is need to\\nadd a field without the need to alter database configs"
+    },
+    {
+      "fieldName": "freeField3",
+      "fieldType": "String",
+      "javadoc": "This is an additional field\\ncreated in case there is need to\\nadd a field without the need to alter database configs"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "RecordStatus",
+      "fieldValues": "ACTIVE (True),INACTIVE (False)",
+      "javadoc": "this is used to identify whether the\\nrecord has been deleted or not (Y-deleted, N-Not deleted)"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PaymentChannel",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": false,
+  "service": "serviceClass"
+}

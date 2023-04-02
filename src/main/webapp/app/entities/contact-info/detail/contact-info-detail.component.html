@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contactInfo">
+      <h2 data-cy="contactInfoDetailsHeading"><span jhiTranslate="paybillApiApp.contactInfo.detail.title">Contact Info</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contactInfo.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.contactInfo.recordUniqueIdentifier">Record Unique Identifier</span></dt>
+        <dd>
+          <span>{{ contactInfo.recordUniqueIdentifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.contactInfo.contactId">Contact Id</span></dt>
+        <dd>
+          <span>{{ contactInfo.contactId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.contactInfo.phoneNumber">Phone Number</span></dt>
+        <dd>
+          <span>{{ contactInfo.phoneNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.contactInfo.emailAddress">Email Address</span></dt>
+        <dd>
+          <span>{{ contactInfo.emailAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.contactInfo.parentsPhoneNumber">Parents Phone Number</span></dt>
+        <dd>
+          <span>{{ contactInfo.parentsPhoneNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.contactInfo.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + contactInfo.status }}">{{ contactInfo.status }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="paybillApiApp.contactInfo.isDeleted" [ngbTooltip]="'paybillApiApp.contactInfo.help.isDeleted' | translate"
+            >Is Deleted</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactInfo.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.contactInfo.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ contactInfo.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.contactInfo.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ contactInfo.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.contactInfo.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ contactInfo.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.contactInfo.student">Student</span></dt>
+        <dd>
+          <div *ngIf="contactInfo.student">
+            <a [routerLink]="['/student', contactInfo.student.id, 'view']">{{ contactInfo.student.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contact-info', contactInfo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

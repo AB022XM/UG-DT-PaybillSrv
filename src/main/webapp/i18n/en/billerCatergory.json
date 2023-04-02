@@ -1,0 +1,33 @@
+{
+  "paybillApiApp": {
+    "billerCatergory": {
+      "home": {
+        "title": "Biller Catergories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Biller Catergory",
+        "createOrEditLabel": "Create or edit a Biller Catergory",
+        "notFound": "No Biller Catergories found"
+      },
+      "created": "A new Biller Catergory is created with identifier {{ param }}",
+      "updated": "A Biller Catergory is updated with identifier {{ param }}",
+      "deleted": "A Biller Catergory is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Biller Catergory {{ id }}?"
+      },
+      "detail": {
+        "title": "Biller Catergory"
+      },
+      "id": "ID",
+      "recordUniqueIdentifier": "Record Unique Identifier",
+      "categoryId": "Category Id",
+      "categoryCode": "Category Code",
+      "categoryName": "Category Name",
+      "categoryDescription": "Category Description",
+      "status": "Status",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "isDeleted": "Is Deleted"
+    }
+  }
+}

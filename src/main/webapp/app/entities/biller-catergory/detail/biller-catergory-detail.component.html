@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="billerCatergory">
+      <h2 data-cy="billerCatergoryDetailsHeading">
+        <span jhiTranslate="paybillApiApp.billerCatergory.detail.title">Biller Catergory</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ billerCatergory.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.billerCatergory.recordUniqueIdentifier">Record Unique Identifier</span></dt>
+        <dd>
+          <span>{{ billerCatergory.recordUniqueIdentifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.billerCatergory.categoryId">Category Id</span></dt>
+        <dd>
+          <span>{{ billerCatergory.categoryId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.billerCatergory.categoryCode">Category Code</span></dt>
+        <dd>
+          <span>{{ billerCatergory.categoryCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.billerCatergory.categoryName">Category Name</span></dt>
+        <dd>
+          <span>{{ billerCatergory.categoryName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.billerCatergory.categoryDescription">Category Description</span></dt>
+        <dd>
+          <span>{{ billerCatergory.categoryDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.billerCatergory.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + billerCatergory.status }}">{{ billerCatergory.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.billerCatergory.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ billerCatergory.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.billerCatergory.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ billerCatergory.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.billerCatergory.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ billerCatergory.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.billerCatergory.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ billerCatergory.isDeleted }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/biller-catergory', billerCatergory.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

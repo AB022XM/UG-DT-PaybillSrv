@@ -1,0 +1,41 @@
+{
+  "paybillApiApp": {
+    "biller": {
+      "home": {
+        "title": "Billers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Biller",
+        "createOrEditLabel": "Create or edit a Biller",
+        "notFound": "No Billers found"
+      },
+      "created": "A new Biller is created with identifier {{ param }}",
+      "updated": "A Biller is updated with identifier {{ param }}",
+      "deleted": "A Biller is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Biller {{ id }}?"
+      },
+      "detail": {
+        "title": "Biller"
+      },
+      "id": "ID",
+      "recordUniqueIdentifier": "Record Unique Identifier",
+      "billerId": "Biller Id",
+      "billerCode": "Biller Code",
+      "categoryId": "Category Id",
+      "contactId": "Contact Id",
+      "addressId": "Address Id",
+      "firstName": "First Name",
+      "middleName": "Middle Name",
+      "lastName": "Last Name",
+      "dateOfBirth": "Date Of Birth",
+      "outStandingAmount": "Out Standing Amount",
+      "status": "Status",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "isDeleted": "Is Deleted",
+      "payment": "Payment",
+      "paybill": "Paybill"
+    }
+  }
+}

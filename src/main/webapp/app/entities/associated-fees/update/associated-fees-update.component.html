@@ -1,0 +1,225 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-associated-fees-heading"
+        data-cy="AssociatedFeesCreateUpdateHeading"
+        jhiTranslate="paybillApiApp.associatedFees.home.createOrEditLabel"
+      >
+        Create or edit a Associated Fees
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.recordUniqueIdentifier" for="field_recordUniqueIdentifier"
+            >Record Unique Identifier</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="recordUniqueIdentifier"
+            id="field_recordUniqueIdentifier"
+            data-cy="recordUniqueIdentifier"
+            formControlName="recordUniqueIdentifier"
+          />
+          <div
+            *ngIf="
+              editForm.get('recordUniqueIdentifier')!.invalid &&
+              (editForm.get('recordUniqueIdentifier')!.dirty || editForm.get('recordUniqueIdentifier')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('recordUniqueIdentifier')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.feeId" for="field_feeId">Fee Id</label>
+          <input type="number" class="form-control" name="feeId" id="field_feeId" data-cy="feeId" formControlName="feeId" />
+          <div *ngIf="editForm.get('feeId')!.invalid && (editForm.get('feeId')!.dirty || editForm.get('feeId')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('feeId')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('feeId')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.feeCode" for="field_feeCode">Fee Code</label>
+          <input type="text" class="form-control" name="feeCode" id="field_feeCode" data-cy="feeCode" formControlName="feeCode" />
+          <div *ngIf="editForm.get('feeCode')!.invalid && (editForm.get('feeCode')!.dirty || editForm.get('feeCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('feeCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.feeDescription" for="field_feeDescription"
+            >Fee Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="feeDescription"
+            id="field_feeDescription"
+            data-cy="feeDescription"
+            formControlName="feeDescription"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.status" for="field_status">Status</label>
+          <input type="checkbox" class="form-check" name="status" id="field_status" data-cy="status" formControlName="status" />
+          <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.freeField1" for="field_freeField1">Free Field 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.freeField2" for="field_freeField2">Free Field 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.freeField3" for="field_freeField3">Free Field 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField3"
+            id="field_freeField3"
+            data-cy="freeField3"
+            formControlName="freeField3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.createdAt" for="field_createdAt">Created At</label>
+          <div class="input-group">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="text"
+              class="form-control"
+              name="createdAt"
+              ngbDatepicker
+              #createdAtDp="ngbDatepicker"
+              formControlName="createdAt"
+            />
+            <button type="button" class="btn btn-secondary" (click)="createdAtDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.updatedAt" for="field_updatedAt">Updated At</label>
+          <div class="input-group">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="text"
+              class="form-control"
+              name="updatedAt"
+              ngbDatepicker
+              #updatedAtDp="ngbDatepicker"
+              formControlName="updatedAt"
+            />
+            <button type="button" class="btn btn-secondary" (click)="updatedAtDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="paybillApiApp.associatedFees.isDeleted"
+            for="field_isDeleted"
+            [ngbTooltip]="'paybillApiApp.associatedFees.help.isDeleted' | translate"
+            >Is Deleted</label
+          >
+          <div class="input-group">
+            <input
+              id="field_isDeleted"
+              data-cy="isDeleted"
+              type="text"
+              class="form-control"
+              name="isDeleted"
+              ngbDatepicker
+              #isDeletedDp="ngbDatepicker"
+              formControlName="isDeleted"
+            />
+            <button type="button" class="btn btn-secondary" (click)="isDeletedDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.associatedFees.payment" for="field_payment">Payment</label>
+          <select
+            class="form-control"
+            id="field_payment"
+            data-cy="payment"
+            name="payment"
+            formControlName="payment"
+            [compareWith]="comparePayment"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="paymentOption" *ngFor="let paymentOption of paymentsSharedCollection">{{ paymentOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

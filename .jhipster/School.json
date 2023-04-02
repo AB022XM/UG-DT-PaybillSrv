@@ -1,0 +1,79 @@
+{
+  "applications": ["PaybillAPI"],
+  "changelogDate": "20230402192002",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "school",
+  "fields": [
+    {
+      "fieldName": "recordUniqueIdentifier",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "schoolId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "schoolCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "schoolPhoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "schoolAlternativePhoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "schoolemailAddess",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "schoolName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "RecordStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACTIVE (True),INACTIVE (False)"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "registrationDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "approvedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "School",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": false,
+  "service": "serviceClass"
+}

@@ -1,0 +1,11 @@
+id;record_unique_identifier;biller_id;biller_code;category_id;contact_id;address_id;first_name;middle_name;last_name;date_of_birth;out_standing_amount;status;free_field_1;free_field_2;free_field_3;is_deleted
+1;b5dc033c-2168-48d2-84dd-47d3b690c5ef;12049;40150;29422;68914;98365;Zakary;eyeballs methodical;Zemlak;2023-04-02;Account;INACTIVE;solution;Security Shoes;Account JBOD;2023-04-02
+2;97124643-d0f1-492a-9a4f-ae22d5471579;94840;86493;21330;73308;90881;Jaeden;Brook;Leffler;2023-04-02;Soft;INACTIVE;Branding Agent monitor;facilitate;Berkshire Supervisor;2023-04-02
+3;70583dec-8c28-4be9-9edd-aabb1f69be5c;52728;6260;7716;53600;21711;Kylie;Generic Agent;Hoppe;2023-04-02;quantify;INACTIVE;Rand Frozen;one-to-one;primary e-markets;2023-04-02
+4;3a07de56-45e9-4b00-a44b-f7be12bb2345;37142;85936;17743;52640;44127;Ollie;Licensed invoice pink;Rodriguez;2023-04-02;Steel Sw;ACTIVE;architectures Prairie azure;one-to-one Metal;protocol Throughway Oregon;2023-04-02
+5;a4127119-b376-40d6-a7ac-93fdebb8bcdc;58873;51123;63375;59481;76322;Darion;New Awesome Intelligent;Jakubowski;2023-04-02;Grove e-;INACTIVE;payment Horizontal;Buckinghamshire Multi-layered;web-readiness Computer;2023-04-02
+6;1a87b2cf-dd0b-4a92-a7f7-476aba9d6b3b;64489;94062;17232;11386;32241;Arno;Response;Towne;2023-04-02;Kids ind;ACTIVE;exploit info-mediaries Guyana;West;Zealand;2023-04-02
+7;5c2c0116-85f9-4bbf-b43b-046a4a1c2c54;25309;76105;53826;78513;80470;Bartholome;bypassing Buckinghamshire Turk;Homenick;2023-04-02;Mouse;ACTIVE;holistic;Intelligent;Tasty connect Gorgeous;2023-04-02
+8;135250d9-ad8c-4a78-a178-4fcaab0cdb15;24965;65408;37076;48636;61855;Franco;Account contextually-based;Hessel;2023-04-02;Product ;INACTIVE;navigate rich;Tasty Meadows;Identity;2023-04-02
+9;01c7c401-0665-4c1b-b370-a2ab97df9239;50576;38643;19583;29315;27507;Neva;National;Russel;2023-04-02;e-market;ACTIVE;Greens Strategist;Streamlined;Keyboard implementation Borders;2023-04-02
+10;ddf537e0-37c7-458d-a05a-ad4127eda305;58670;6886;66677;46241;90729;Helene;Cotton;Zemlak;2023-04-01;USB;ACTIVE;Associate Architect;bluetooth;Rubber;2023-04-02

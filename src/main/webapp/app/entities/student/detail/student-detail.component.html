@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="student">
+      <h2 data-cy="studentDetailsHeading"><span jhiTranslate="paybillApiApp.student.detail.title">Student</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ student.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.recordUniqueIdentifier">Record Unique Identifier</span></dt>
+        <dd>
+          <span>{{ student.recordUniqueIdentifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.studentId">Student Id</span></dt>
+        <dd>
+          <span>{{ student.studentId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.studentCode">Student Code</span></dt>
+        <dd>
+          <span>{{ student.studentCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.studentClassId">Student Class Id</span></dt>
+        <dd>
+          <span>{{ student.studentClassId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.contactId">Contact Id</span></dt>
+        <dd>
+          <span>{{ student.contactId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.addressId">Address Id</span></dt>
+        <dd>
+          <span>{{ student.addressId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ student.firstName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.middleName">Middle Name</span></dt>
+        <dd>
+          <span>{{ student.middleName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ student.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.paymentCode">Payment Code</span></dt>
+        <dd>
+          <span>{{ student.paymentCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.dateOfBirth">Date Of Birth</span></dt>
+        <dd>
+          <span>{{ student.dateOfBirth | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.outStandingAmount">Out Standing Amount</span></dt>
+        <dd>
+          <span>{{ student.outStandingAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + student.status }}">{{ student.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.billerContact">Biller Contact</span></dt>
+        <dd>
+          <span>{{ student.billerContact }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.billerAddress">Biller Address</span></dt>
+        <dd>
+          <span>{{ student.billerAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ student.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ student.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ student.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.student.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ student.isDeleted | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/student', student.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
