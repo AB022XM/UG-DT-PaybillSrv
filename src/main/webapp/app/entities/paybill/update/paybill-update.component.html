@@ -1,0 +1,527 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-paybill-heading" data-cy="PaybillCreateUpdateHeading" jhiTranslate="paybillApiApp.paybill.home.createOrEditLabel">
+        Create or edit a Paybill
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.recordUniqueIdentifier" for="field_recordUniqueIdentifier"
+            >Record Unique Identifier</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="recordUniqueIdentifier"
+            id="field_recordUniqueIdentifier"
+            data-cy="recordUniqueIdentifier"
+            formControlName="recordUniqueIdentifier"
+          />
+          <div
+            *ngIf="
+              editForm.get('recordUniqueIdentifier')!.invalid &&
+              (editForm.get('recordUniqueIdentifier')!.dirty || editForm.get('recordUniqueIdentifier')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('recordUniqueIdentifier')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.processTimestamp" for="field_processTimestamp"
+            >Process Timestamp</label
+          >
+          <div class="input-group">
+            <input
+              id="field_processTimestamp"
+              data-cy="processTimestamp"
+              type="text"
+              class="form-control"
+              name="processTimestamp"
+              ngbDatepicker
+              #processTimestampDp="ngbDatepicker"
+              formControlName="processTimestamp"
+            />
+            <button type="button" class="btn btn-secondary" (click)="processTimestampDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.feeAmount" for="field_feeAmount">Fee Amount</label>
+          <input type="number" class="form-control" name="feeAmount" id="field_feeAmount" data-cy="feeAmount" formControlName="feeAmount" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.feeDescription" for="field_feeDescription">Fee Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="feeDescription"
+            id="field_feeDescription"
+            data-cy="feeDescription"
+            formControlName="feeDescription"
+          />
+          <div
+            *ngIf="
+              editForm.get('feeDescription')!.invalid && (editForm.get('feeDescription')!.dirty || editForm.get('feeDescription')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('feeDescription')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 3 }"
+            >
+              This field is required to be at least 3 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('feeDescription')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 200 }"
+            >
+              This field cannot be longer than 200 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.feeDueFromDate" for="field_feeDueFromDate">Fee Due From Date</label>
+          <div class="input-group">
+            <input
+              id="field_feeDueFromDate"
+              data-cy="feeDueFromDate"
+              type="text"
+              class="form-control"
+              name="feeDueFromDate"
+              ngbDatepicker
+              #feeDueFromDateDp="ngbDatepicker"
+              formControlName="feeDueFromDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="feeDueFromDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.feeDueToDate" for="field_feeDueToDate">Fee Due To Date</label>
+          <div class="input-group">
+            <input
+              id="field_feeDueToDate"
+              data-cy="feeDueToDate"
+              type="text"
+              class="form-control"
+              name="feeDueToDate"
+              ngbDatepicker
+              #feeDueToDateDp="ngbDatepicker"
+              formControlName="feeDueToDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="feeDueToDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.feeId" for="field_feeId">Fee Id</label>
+          <input type="text" class="form-control" name="feeId" id="field_feeId" data-cy="feeId" formControlName="feeId" />
+          <div *ngIf="editForm.get('feeId')!.invalid && (editForm.get('feeId')!.dirty || editForm.get('feeId')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('feeId')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('feeId')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 1 }"
+            >
+              This field is required to be at least 1 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('feeId')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.firstName" for="field_firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+          <div *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('firstName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('firstName')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 3 }"
+            >
+              This field is required to be at least 3 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('firstName')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.lastName" for="field_lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+          <div *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastName')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 3 }"
+            >
+              This field is required to be at least 3 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastName')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.middleName" for="field_middleName">Middle Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="middleName"
+            id="field_middleName"
+            data-cy="middleName"
+            formControlName="middleName"
+          />
+          <div *ngIf="editForm.get('middleName')!.invalid && (editForm.get('middleName')!.dirty || editForm.get('middleName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('middleName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('middleName')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 3 }"
+            >
+              This field is required to be at least 3 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('middleName')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.outstandingAmount" for="field_outstandingAmount"
+            >Outstanding Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="outstandingAmount"
+            id="field_outstandingAmount"
+            data-cy="outstandingAmount"
+            formControlName="outstandingAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.paymentCode" for="field_paymentCode">Payment Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="paymentCode"
+            id="field_paymentCode"
+            data-cy="paymentCode"
+            formControlName="paymentCode"
+          />
+          <div *ngIf="editForm.get('paymentCode')!.invalid && (editForm.get('paymentCode')!.dirty || editForm.get('paymentCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('paymentCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('paymentCode')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 3 }"
+            >
+              This field is required to be at least 3 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('paymentCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.schoolCode" for="field_schoolCode">School Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="schoolCode"
+            id="field_schoolCode"
+            data-cy="schoolCode"
+            formControlName="schoolCode"
+          />
+          <div *ngIf="editForm.get('schoolCode')!.invalid && (editForm.get('schoolCode')!.dirty || editForm.get('schoolCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('schoolCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('schoolCode')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 3 }"
+            >
+              This field is required to be at least 3 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('schoolCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.schoolName" for="field_schoolName">School Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="schoolName"
+            id="field_schoolName"
+            data-cy="schoolName"
+            formControlName="schoolName"
+          />
+          <div *ngIf="editForm.get('schoolName')!.invalid && (editForm.get('schoolName')!.dirty || editForm.get('schoolName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('schoolName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('schoolName')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 3 }"
+            >
+              This field is required to be at least 3 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('schoolName')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 200 }"
+            >
+              This field cannot be longer than 200 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.studentClass" for="field_studentClass">Student Class</label>
+          <input
+            type="text"
+            class="form-control"
+            name="studentClass"
+            id="field_studentClass"
+            data-cy="studentClass"
+            formControlName="studentClass"
+          />
+          <div
+            *ngIf="editForm.get('studentClass')!.invalid && (editForm.get('studentClass')!.dirty || editForm.get('studentClass')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('studentClass')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('studentClass')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 3 }"
+            >
+              This field is required to be at least 3 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('studentClass')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.paymentChannel" for="field_paymentChannel">Payment Channel</label>
+          <select
+            class="form-control"
+            name="paymentChannel"
+            formControlName="paymentChannel"
+            id="field_paymentChannel"
+            data-cy="paymentChannel"
+          >
+            <option [ngValue]="null">{{ 'paybillApiApp.PaymentChannel.null' | translate }}</option>
+            <option *ngFor="let paymentChannel of paymentChannelValues" [value]="paymentChannel">
+              {{ 'paybillApiApp.PaymentChannel.' + paymentChannel | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('paymentChannel')!.invalid && (editForm.get('paymentChannel')!.dirty || editForm.get('paymentChannel')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('paymentChannel')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.freeField1" for="field_freeField1">Free Field 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.freeField2" for="field_freeField2">Free Field 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.freeField3" for="field_freeField3">Free Field 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField3"
+            id="field_freeField3"
+            data-cy="freeField3"
+            formControlName="freeField3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paybill.biller" for="field_biller">Biller</label>
+          <select
+            class="form-control"
+            id="field_biller"
+            data-cy="biller"
+            name="biller"
+            formControlName="biller"
+            [compareWith]="compareBiller"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="billerOption" *ngFor="let billerOption of billersSharedCollection">{{ billerOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

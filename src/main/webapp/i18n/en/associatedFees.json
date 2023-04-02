@@ -1,0 +1,38 @@
+{
+  "paybillApiApp": {
+    "associatedFees": {
+      "home": {
+        "title": "Associated Fees",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Associated Fees",
+        "createOrEditLabel": "Create or edit a Associated Fees",
+        "notFound": "No Associated Fees found"
+      },
+      "created": "A new Associated Fees is created with identifier {{ param }}",
+      "updated": "A Associated Fees is updated with identifier {{ param }}",
+      "deleted": "A Associated Fees is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Associated Fees {{ id }}?"
+      },
+      "detail": {
+        "title": "Associated Fees"
+      },
+      "id": "ID",
+      "recordUniqueIdentifier": "Record Unique Identifier",
+      "feeId": "Fee Id",
+      "feeCode": "Fee Code",
+      "feeDescription": "Fee Description",
+      "status": "Status",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "isDeleted": "Is Deleted",
+      "payment": "Payment",
+      "help": {
+        "isDeleted": "this is used to identify whether the\nrecord has been deleted or not (Y-deleted, N-Not deleted)"
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "paybillApiApp": {
+    "paybill": {
+      "home": {
+        "title": "Paybills",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Paybill",
+        "createOrEditLabel": "Create or edit a Paybill",
+        "notFound": "No Paybills found"
+      },
+      "created": "A new Paybill is created with identifier {{ param }}",
+      "updated": "A Paybill is updated with identifier {{ param }}",
+      "deleted": "A Paybill is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Paybill {{ id }}?"
+      },
+      "detail": {
+        "title": "Paybill"
+      },
+      "id": "ID",
+      "recordUniqueIdentifier": "Record Unique Identifier",
+      "processTimestamp": "Process Timestamp",
+      "feeAmount": "Fee Amount",
+      "feeDescription": "Fee Description",
+      "feeDueFromDate": "Fee Due From Date",
+      "feeDueToDate": "Fee Due To Date",
+      "feeId": "Fee Id",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "middleName": "Middle Name",
+      "outstandingAmount": "Outstanding Amount",
+      "paymentCode": "Payment Code",
+      "schoolCode": "School Code",
+      "schoolName": "School Name",
+      "studentClass": "Student Class",
+      "paymentChannel": "Payment Channel",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "biller": "Biller"
+    }
+  }
+}

@@ -1,0 +1,225 @@
+<div>
+  <h2 id="page-heading" data-cy="PaybillHeading">
+    <span jhiTranslate="paybillApiApp.paybill.home.title">Paybills</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="paybillApiApp.paybill.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-paybill"
+        [routerLink]="['/paybill/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="paybillApiApp.paybill.home.createLabel"> Create a new Paybill </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="paybills?.length === 0">
+    <span jhiTranslate="paybillApiApp.paybill.home.notFound">No Paybills found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="paybills && paybills.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="recordUniqueIdentifier">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.recordUniqueIdentifier">Record Unique Identifier</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="processTimestamp">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.processTimestamp">Process Timestamp</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="feeAmount">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.feeAmount">Fee Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="feeDescription">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.feeDescription">Fee Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="feeDueFromDate">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.feeDueFromDate">Fee Due From Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="feeDueToDate">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.feeDueToDate">Fee Due To Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="feeId">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.feeId">Fee Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="firstName">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.firstName">First Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lastName">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.lastName">Last Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="middleName">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.middleName">Middle Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="outstandingAmount">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.outstandingAmount">Outstanding Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="paymentCode">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.paymentCode">Payment Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="schoolCode">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.schoolCode">School Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="schoolName">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.schoolName">School Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="studentClass">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.studentClass">Student Class</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="paymentChannel">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.paymentChannel">Payment Channel</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.freeField1">Free Field 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.freeField2">Free Field 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.freeField3">Free Field 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="biller.id">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.paybill.biller">Biller</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paybill of paybills; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/paybill', paybill.id, 'view']">{{ paybill.id }}</a>
+          </td>
+          <td>{{ paybill.recordUniqueIdentifier }}</td>
+          <td>{{ paybill.processTimestamp | formatMediumDate }}</td>
+          <td>{{ paybill.feeAmount }}</td>
+          <td>{{ paybill.feeDescription }}</td>
+          <td>{{ paybill.feeDueFromDate | formatMediumDate }}</td>
+          <td>{{ paybill.feeDueToDate | formatMediumDate }}</td>
+          <td>{{ paybill.feeId }}</td>
+          <td>{{ paybill.firstName }}</td>
+          <td>{{ paybill.lastName }}</td>
+          <td>{{ paybill.middleName }}</td>
+          <td>{{ paybill.outstandingAmount }}</td>
+          <td>{{ paybill.paymentCode }}</td>
+          <td>{{ paybill.schoolCode }}</td>
+          <td>{{ paybill.schoolName }}</td>
+          <td>{{ paybill.studentClass }}</td>
+          <td jhiTranslate="{{ 'paybillApiApp.PaymentChannel.' + paybill.paymentChannel }}">{{ paybill.paymentChannel }}</td>
+          <td>{{ paybill.freeField1 }}</td>
+          <td>{{ paybill.freeField2 }}</td>
+          <td>{{ paybill.freeField3 }}</td>
+          <td>
+            <div *ngIf="paybill.biller">
+              <a [routerLink]="['/biller', paybill.biller.id, 'view']">{{ paybill.biller.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/paybill', paybill.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/paybill', paybill.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(paybill)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

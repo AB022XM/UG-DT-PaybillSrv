@@ -1,0 +1,169 @@
+<div>
+  <h2 id="page-heading" data-cy="SchoolHeading">
+    <span jhiTranslate="paybillApiApp.school.home.title">Schools</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="paybillApiApp.school.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-school"
+        [routerLink]="['/school/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="paybillApiApp.school.home.createLabel"> Create a new School </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="schools?.length === 0">
+    <span jhiTranslate="paybillApiApp.school.home.notFound">No Schools found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="schools && schools.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="recordUniqueIdentifier">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.recordUniqueIdentifier">Record Unique Identifier</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="schoolId">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.schoolId">School Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="schoolCode">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.schoolCode">School Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="schoolPhoneNumber">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.schoolPhoneNumber">School Phone Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="schoolAlternativePhoneNumber">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.schoolAlternativePhoneNumber">School Alternative Phone Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="schoolemailAddess">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.schoolemailAddess">Schoolemail Addess</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="schoolName">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.schoolName">School Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.freeField1">Free Field 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="registrationDate">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.registrationDate">Registration Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="approvedDate">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.approvedDate">Approved Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.freeField2">Free Field 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.freeField3">Free Field 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.school.isDeleted">Is Deleted</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let school of schools; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/school', school.id, 'view']">{{ school.id }}</a>
+          </td>
+          <td>{{ school.recordUniqueIdentifier }}</td>
+          <td>{{ school.schoolId }}</td>
+          <td>{{ school.schoolCode }}</td>
+          <td>{{ school.schoolPhoneNumber }}</td>
+          <td>{{ school.schoolAlternativePhoneNumber }}</td>
+          <td>{{ school.schoolemailAddess }}</td>
+          <td>{{ school.schoolName }}</td>
+          <td jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + school.status }}">{{ school.status }}</td>
+          <td>{{ school.freeField1 }}</td>
+          <td>{{ school.registrationDate | formatMediumDatetime }}</td>
+          <td>{{ school.approvedDate | formatMediumDatetime }}</td>
+          <td>{{ school.freeField2 }}</td>
+          <td>{{ school.freeField3 }}</td>
+          <td>{{ school.isDeleted | formatMediumDate }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/school', school.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/school', school.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(school)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

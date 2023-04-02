@@ -1,0 +1,27 @@
+{
+  "applications": ["PaybillAPI"],
+  "changelogDate": "20230402192004",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "validate_customer_by_id",
+  "fields": [
+    {
+      "fieldName": "customnerId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "billCode",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ValidateCustomerById",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": false,
+  "service": "serviceClass"
+}

@@ -1,0 +1,162 @@
+<div>
+  <h2 id="page-heading" data-cy="ContactInfoHeading">
+    <span jhiTranslate="paybillApiApp.contactInfo.home.title">Contact Infos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="paybillApiApp.contactInfo.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contact-info"
+        [routerLink]="['/contact-info/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="paybillApiApp.contactInfo.home.createLabel"> Create a new Contact Info </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contactInfos?.length === 0">
+    <span jhiTranslate="paybillApiApp.contactInfo.home.notFound">No Contact Infos found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="contactInfos && contactInfos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="recordUniqueIdentifier">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.recordUniqueIdentifier">Record Unique Identifier</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="contactId">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.contactId">Contact Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="phoneNumber">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.phoneNumber">Phone Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="emailAddress">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.emailAddress">Email Address</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="parentsPhoneNumber">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.parentsPhoneNumber">Parents Phone Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.isDeleted">Is Deleted</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.freeField1">Free Field 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.freeField2">Free Field 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.freeField3">Free Field 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="student.id">
+            <div class="d-flex">
+              <span jhiTranslate="paybillApiApp.contactInfo.student">Student</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contactInfo of contactInfos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contact-info', contactInfo.id, 'view']">{{ contactInfo.id }}</a>
+          </td>
+          <td>{{ contactInfo.recordUniqueIdentifier }}</td>
+          <td>{{ contactInfo.contactId }}</td>
+          <td>{{ contactInfo.phoneNumber }}</td>
+          <td>{{ contactInfo.emailAddress }}</td>
+          <td>{{ contactInfo.parentsPhoneNumber }}</td>
+          <td jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + contactInfo.status }}">{{ contactInfo.status }}</td>
+          <td>{{ contactInfo.isDeleted }}</td>
+          <td>{{ contactInfo.freeField1 }}</td>
+          <td>{{ contactInfo.freeField2 }}</td>
+          <td>{{ contactInfo.freeField3 }}</td>
+          <td>
+            <div *ngIf="contactInfo.student">
+              <a [routerLink]="['/student', contactInfo.student.id, 'view']">{{ contactInfo.student.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contact-info', contactInfo.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contact-info', contactInfo.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(contactInfo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

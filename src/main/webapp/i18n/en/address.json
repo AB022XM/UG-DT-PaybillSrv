@@ -1,0 +1,33 @@
+{
+  "paybillApiApp": {
+    "address": {
+      "home": {
+        "title": "Addresses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Address",
+        "createOrEditLabel": "Create or edit a Address",
+        "notFound": "No Addresses found"
+      },
+      "created": "A new Address is created with identifier {{ param }}",
+      "updated": "A Address is updated with identifier {{ param }}",
+      "deleted": "A Address is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Address {{ id }}?"
+      },
+      "detail": {
+        "title": "Address"
+      },
+      "id": "ID",
+      "recordUniqueIdentifier": "Record Unique Identifier",
+      "addressId": "Address Id",
+      "addresssName": "Addresss Name",
+      "addressDescription": "Address Description",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "isDeleted": "Is Deleted",
+      "help": {
+        "isDeleted": "this is used to identify whether the\nrecord has been deleted or not (Y-deleted, N-Not deleted)"
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "paybillApiApp": {
+    "student": {
+      "home": {
+        "title": "Students",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Student",
+        "createOrEditLabel": "Create or edit a Student",
+        "notFound": "No Students found"
+      },
+      "created": "A new Student is created with identifier {{ param }}",
+      "updated": "A Student is updated with identifier {{ param }}",
+      "deleted": "A Student is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Student {{ id }}?"
+      },
+      "detail": {
+        "title": "Student"
+      },
+      "id": "ID",
+      "recordUniqueIdentifier": "Record Unique Identifier",
+      "studentId": "Student Id",
+      "studentCode": "Student Code",
+      "studentClassId": "Student Class Id",
+      "contactId": "Contact Id",
+      "addressId": "Address Id",
+      "firstName": "First Name",
+      "middleName": "Middle Name",
+      "lastName": "Last Name",
+      "paymentCode": "Payment Code",
+      "dateOfBirth": "Date Of Birth",
+      "outStandingAmount": "Out Standing Amount",
+      "status": "Status",
+      "billerContact": "Biller Contact",
+      "billerAddress": "Biller Address",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "isDeleted": "Is Deleted",
+      "contactInfo": "Contact Info"
+    }
+  }
+}

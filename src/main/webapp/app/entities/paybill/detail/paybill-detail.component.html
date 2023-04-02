@@ -1,0 +1,110 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paybill">
+      <h2 data-cy="paybillDetailsHeading"><span jhiTranslate="paybillApiApp.paybill.detail.title">Paybill</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ paybill.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.recordUniqueIdentifier">Record Unique Identifier</span></dt>
+        <dd>
+          <span>{{ paybill.recordUniqueIdentifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.processTimestamp">Process Timestamp</span></dt>
+        <dd>
+          <span>{{ paybill.processTimestamp | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.feeAmount">Fee Amount</span></dt>
+        <dd>
+          <span>{{ paybill.feeAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.feeDescription">Fee Description</span></dt>
+        <dd>
+          <span>{{ paybill.feeDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.feeDueFromDate">Fee Due From Date</span></dt>
+        <dd>
+          <span>{{ paybill.feeDueFromDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.feeDueToDate">Fee Due To Date</span></dt>
+        <dd>
+          <span>{{ paybill.feeDueToDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.feeId">Fee Id</span></dt>
+        <dd>
+          <span>{{ paybill.feeId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ paybill.firstName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ paybill.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.middleName">Middle Name</span></dt>
+        <dd>
+          <span>{{ paybill.middleName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.outstandingAmount">Outstanding Amount</span></dt>
+        <dd>
+          <span>{{ paybill.outstandingAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.paymentCode">Payment Code</span></dt>
+        <dd>
+          <span>{{ paybill.paymentCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.schoolCode">School Code</span></dt>
+        <dd>
+          <span>{{ paybill.schoolCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.schoolName">School Name</span></dt>
+        <dd>
+          <span>{{ paybill.schoolName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.studentClass">Student Class</span></dt>
+        <dd>
+          <span>{{ paybill.studentClass }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.paymentChannel">Payment Channel</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'paybillApiApp.PaymentChannel.' + paybill.paymentChannel }}">{{ paybill.paymentChannel }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ paybill.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ paybill.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ paybill.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paybill.biller">Biller</span></dt>
+        <dd>
+          <div *ngIf="paybill.biller">
+            <a [routerLink]="['/biller', paybill.biller.id, 'view']">{{ paybill.biller.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/paybill', paybill.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

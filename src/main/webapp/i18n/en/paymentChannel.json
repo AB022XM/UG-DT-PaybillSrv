@@ -1,0 +1,38 @@
+{
+  "paybillApiApp": {
+    "paymentChannel": {
+      "home": {
+        "title": "Payment Channels",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Payment Channel",
+        "createOrEditLabel": "Create or edit a Payment Channel",
+        "notFound": "No Payment Channels found"
+      },
+      "created": "A new Payment Channel is created with identifier {{ param }}",
+      "updated": "A Payment Channel is updated with identifier {{ param }}",
+      "deleted": "A Payment Channel is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Payment Channel {{ id }}?"
+      },
+      "detail": {
+        "title": "Payment Channel"
+      },
+      "id": "ID",
+      "recordUniqueIdentifier": "Record Unique Identifier",
+      "channelId": "Channel Id",
+      "channelCode": "Channel Code",
+      "channelName": "Channel Name",
+      "status": "Status",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "isDeleted": "Is Deleted",
+      "help": {
+        "freeField1": "This is an additional field\ncreated in case there is need to\nadd a field without the need to alter database configs",
+        "freeField2": "This is an additional field\ncreated in case there is need to\nadd a field without the need to alter database configs",
+        "freeField3": "This is an additional field\ncreated in case there is need to\nadd a field without the need to alter database configs",
+        "isDeleted": "this is used to identify whether the\nrecord has been deleted or not (Y-deleted, N-Not deleted)"
+      }
+    }
+  }
+}

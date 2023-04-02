@@ -1,0 +1,92 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="biller">
+      <h2 data-cy="billerDetailsHeading"><span jhiTranslate="paybillApiApp.biller.detail.title">Biller</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ biller.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.recordUniqueIdentifier">Record Unique Identifier</span></dt>
+        <dd>
+          <span>{{ biller.recordUniqueIdentifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.billerId">Biller Id</span></dt>
+        <dd>
+          <span>{{ biller.billerId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.billerCode">Biller Code</span></dt>
+        <dd>
+          <span>{{ biller.billerCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.categoryId">Category Id</span></dt>
+        <dd>
+          <span>{{ biller.categoryId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.contactId">Contact Id</span></dt>
+        <dd>
+          <span>{{ biller.contactId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.addressId">Address Id</span></dt>
+        <dd>
+          <span>{{ biller.addressId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ biller.firstName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.middleName">Middle Name</span></dt>
+        <dd>
+          <span>{{ biller.middleName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ biller.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.dateOfBirth">Date Of Birth</span></dt>
+        <dd>
+          <span>{{ biller.dateOfBirth | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.outStandingAmount">Out Standing Amount</span></dt>
+        <dd>
+          <span>{{ biller.outStandingAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + biller.status }}">{{ biller.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ biller.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ biller.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ biller.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.biller.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ biller.isDeleted | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/biller', biller.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

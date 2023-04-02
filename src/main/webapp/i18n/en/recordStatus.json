@@ -1,0 +1,9 @@
+{
+  "paybillApiApp": {
+    "RecordStatus": {
+      "null": "",
+      "ACTIVE": "True",
+      "INACTIVE": "False"
+    }
+  }
+}

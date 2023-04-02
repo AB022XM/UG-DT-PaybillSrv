@@ -1,0 +1,102 @@
+{
+  "applications": ["PaybillAPI"],
+  "changelogDate": "20230402192003",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "payment",
+  "fields": [
+    {
+      "fieldName": "recordUniqueIdentifier",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "paymentId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "paymentCode",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "customerId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "feeAmount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "isAmountFixed",
+      "fieldType": "RecordStatus",
+      "fieldValues": "ACTIVE (True),INACTIVE (False)"
+    },
+    {
+      "fieldName": "feeDescription",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "200",
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "fixedAmount",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesMinlength": "1"
+    },
+    {
+      "fieldName": "paymentName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "outstandingAmount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "paymentChannel",
+      "fieldType": "PaymentChannel",
+      "fieldTypeJavadoc": "This enum shows all available payment channels\\n@author Banada Ismael ABSA DT team",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "OVERTHECOUNTER (COUNTER),ABSAINTERNETBANKING (INTERNETBANKING),POINTOFSALE (POS),MOBILEAPP (APP),CHATBOT (ABBY),USSD (USSD)"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField3",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Payment",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "associatedFees",
+      "otherEntityRelationshipName": "payment",
+      "relationshipName": "associatedFees",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "biller",
+      "otherEntityRelationshipName": "payment",
+      "relationshipName": "biller",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": false,
+  "service": "serviceClass"
+}

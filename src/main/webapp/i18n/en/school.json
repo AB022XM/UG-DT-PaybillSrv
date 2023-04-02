@@ -1,0 +1,37 @@
+{
+  "paybillApiApp": {
+    "school": {
+      "home": {
+        "title": "Schools",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new School",
+        "createOrEditLabel": "Create or edit a School",
+        "notFound": "No Schools found"
+      },
+      "created": "A new School is created with identifier {{ param }}",
+      "updated": "A School is updated with identifier {{ param }}",
+      "deleted": "A School is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete School {{ id }}?"
+      },
+      "detail": {
+        "title": "School"
+      },
+      "id": "ID",
+      "recordUniqueIdentifier": "Record Unique Identifier",
+      "schoolId": "School Id",
+      "schoolCode": "School Code",
+      "schoolPhoneNumber": "School Phone Number",
+      "schoolAlternativePhoneNumber": "School Alternative Phone Number",
+      "schoolemailAddess": "Schoolemail Addess",
+      "schoolName": "School Name",
+      "status": "Status",
+      "freeField1": "Free Field 1",
+      "registrationDate": "Registration Date",
+      "approvedDate": "Approved Date",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "isDeleted": "Is Deleted"
+    }
+  }
+}

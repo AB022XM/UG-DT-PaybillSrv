@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paymentChannel">
+      <h2 data-cy="paymentChannelDetailsHeading"><span jhiTranslate="paybillApiApp.paymentChannel.detail.title">Payment Channel</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ paymentChannel.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paymentChannel.recordUniqueIdentifier">Record Unique Identifier</span></dt>
+        <dd>
+          <span>{{ paymentChannel.recordUniqueIdentifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paymentChannel.channelId">Channel Id</span></dt>
+        <dd>
+          <span>{{ paymentChannel.channelId }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paymentChannel.channelCode">Channel Code</span></dt>
+        <dd>
+          <span>{{ paymentChannel.channelCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paymentChannel.channelName">Channel Name</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'paybillApiApp.PaymentChannel.' + paymentChannel.channelName }}">{{ paymentChannel.channelName }}</span>
+        </dd>
+        <dt><span jhiTranslate="paybillApiApp.paymentChannel.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + paymentChannel.status }}">{{ paymentChannel.status }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="paybillApiApp.paymentChannel.freeField1"
+            [ngbTooltip]="'paybillApiApp.paymentChannel.help.freeField1' | translate"
+            >Free Field 1</span
+          >
+        </dt>
+        <dd>
+          <span>{{ paymentChannel.freeField1 }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="paybillApiApp.paymentChannel.freeField2"
+            [ngbTooltip]="'paybillApiApp.paymentChannel.help.freeField2' | translate"
+            >Free Field 2</span
+          >
+        </dt>
+        <dd>
+          <span>{{ paymentChannel.freeField2 }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="paybillApiApp.paymentChannel.freeField3"
+            [ngbTooltip]="'paybillApiApp.paymentChannel.help.freeField3' | translate"
+            >Free Field 3</span
+          >
+        </dt>
+        <dd>
+          <span>{{ paymentChannel.freeField3 }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="paybillApiApp.paymentChannel.isDeleted"
+            [ngbTooltip]="'paybillApiApp.paymentChannel.help.isDeleted' | translate"
+            >Is Deleted</span
+          >
+        </dt>
+        <dd>
+          <span jhiTranslate="{{ 'paybillApiApp.RecordStatus.' + paymentChannel.isDeleted }}">{{ paymentChannel.isDeleted }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/payment-channel', paymentChannel.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

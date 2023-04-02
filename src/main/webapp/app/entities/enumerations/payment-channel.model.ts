@@ -1,0 +1,13 @@
+export enum PaymentChannel {
+  OVERTHECOUNTER = 'COUNTER',
+
+  ABSAINTERNETBANKING = 'INTERNETBANKING',
+
+  POINTOFSALE = 'POS',
+
+  MOBILEAPP = 'APP',
+
+  CHATBOT = 'ABBY',
+
+  USSD = 'USSD',
+}

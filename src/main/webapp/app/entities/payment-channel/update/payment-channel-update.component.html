@@ -1,0 +1,198 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-payment-channel-heading"
+        data-cy="PaymentChannelCreateUpdateHeading"
+        jhiTranslate="paybillApiApp.paymentChannel.home.createOrEditLabel"
+      >
+        Create or edit a Payment Channel
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paymentChannel.recordUniqueIdentifier" for="field_recordUniqueIdentifier"
+            >Record Unique Identifier</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="recordUniqueIdentifier"
+            id="field_recordUniqueIdentifier"
+            data-cy="recordUniqueIdentifier"
+            formControlName="recordUniqueIdentifier"
+          />
+          <div
+            *ngIf="
+              editForm.get('recordUniqueIdentifier')!.invalid &&
+              (editForm.get('recordUniqueIdentifier')!.dirty || editForm.get('recordUniqueIdentifier')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('recordUniqueIdentifier')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paymentChannel.channelId" for="field_channelId">Channel Id</label>
+          <input type="number" class="form-control" name="channelId" id="field_channelId" data-cy="channelId" formControlName="channelId" />
+          <div *ngIf="editForm.get('channelId')!.invalid && (editForm.get('channelId')!.dirty || editForm.get('channelId')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('channelId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('channelId')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paymentChannel.channelCode" for="field_channelCode">Channel Code</label>
+          <input
+            type="number"
+            class="form-control"
+            name="channelCode"
+            id="field_channelCode"
+            data-cy="channelCode"
+            formControlName="channelCode"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paymentChannel.channelName" for="field_channelName">Channel Name</label>
+          <select class="form-control" name="channelName" formControlName="channelName" id="field_channelName" data-cy="channelName">
+            <option [ngValue]="null">{{ 'paybillApiApp.PaymentChannel.null' | translate }}</option>
+            <option *ngFor="let paymentChannel of paymentChannelValues" [value]="paymentChannel">
+              {{ 'paybillApiApp.PaymentChannel.' + paymentChannel | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('channelName')!.invalid && (editForm.get('channelName')!.dirty || editForm.get('channelName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('channelName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="paybillApiApp.paymentChannel.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'paybillApiApp.RecordStatus.null' | translate }}</option>
+            <option *ngFor="let recordStatus of recordStatusValues" [value]="recordStatus">
+              {{ 'paybillApiApp.RecordStatus.' + recordStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="paybillApiApp.paymentChannel.freeField1"
+            for="field_freeField1"
+            [ngbTooltip]="'paybillApiApp.paymentChannel.help.freeField1' | translate"
+            >Free Field 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="paybillApiApp.paymentChannel.freeField2"
+            for="field_freeField2"
+            [ngbTooltip]="'paybillApiApp.paymentChannel.help.freeField2' | translate"
+            >Free Field 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="paybillApiApp.paymentChannel.freeField3"
+            for="field_freeField3"
+            [ngbTooltip]="'paybillApiApp.paymentChannel.help.freeField3' | translate"
+            >Free Field 3</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField3"
+            id="field_freeField3"
+            data-cy="freeField3"
+            formControlName="freeField3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="paybillApiApp.paymentChannel.isDeleted"
+            for="field_isDeleted"
+            [ngbTooltip]="'paybillApiApp.paymentChannel.help.isDeleted' | translate"
+            >Is Deleted</label
+          >
+          <select class="form-control" name="isDeleted" formControlName="isDeleted" id="field_isDeleted" data-cy="isDeleted">
+            <option [ngValue]="null">{{ 'paybillApiApp.RecordStatus.null' | translate }}</option>
+            <option *ngFor="let recordStatus of recordStatusValues" [value]="recordStatus">
+              {{ 'paybillApiApp.RecordStatus.' + recordStatus | translate }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
